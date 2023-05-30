@@ -19,7 +19,6 @@ public class Handle {
     public static <T extends Exception, V> Optional<V> throwable(ThrowableSupplier<T, V> supplier) {
         Objects.requireNonNull(supplier, "supplier");
 
-
         try {
             return Optional.ofNullable(supplier.get());
         } catch (Exception t) {
@@ -62,7 +61,7 @@ public class Handle {
         Handle.throwable(Delegates.runnableToThrowableSupplier(handler));
     }
 
-    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<tv.ender.lib.exceptions.EscapedException> error) {
+    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<EscapedException> error) {
         Objects.requireNonNull(handler, "supplier");
         Objects.requireNonNull(error, "error");
 
@@ -70,16 +69,14 @@ public class Handle {
             ThrowableSupplier<Exception, Void> supplier = Delegates.runnableToThrowableSupplier(handler);
 
             supplier.get();
+        } catch (EscapedException e) {
+            error.accept(e);
         } catch (Exception t) {
-            if (t instanceof tv.ender.lib.exceptions.EscapedException) {
-                error.accept((tv.ender.lib.exceptions.EscapedException) t);
-            } else {
-                error.accept(new tv.ender.lib.exceptions.EscapedException(t));
-            }
+            error.accept(new EscapedException(t));
         }
     }
 
-    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<tv.ender.lib.exceptions.EscapedException> error, ThrowableRunnable<T> finallyHandler) {
+    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<EscapedException> error, ThrowableRunnable<T> finallyHandler) {
         Objects.requireNonNull(handler, "supplier");
         Objects.requireNonNull(error, "error");
         Objects.requireNonNull(finallyHandler, "finally-handler");
@@ -88,12 +85,10 @@ public class Handle {
             ThrowableSupplier<Exception, Void> supplier = Delegates.runnableToThrowableSupplier(handler);
 
             supplier.get();
+        } catch (EscapedException e) {
+            error.accept(e);
         } catch (Exception t) {
-            if (t instanceof tv.ender.lib.exceptions.EscapedException) {
-                error.accept((tv.ender.lib.exceptions.EscapedException) t);
-            } else {
-                error.accept(new tv.ender.lib.exceptions.EscapedException(t));
-            }
+            error.accept(new EscapedException(t));
         } finally {
             Handle.throwable(finallyHandler);
         }

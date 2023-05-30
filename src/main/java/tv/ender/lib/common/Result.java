@@ -7,7 +7,9 @@ import lombok.Data;
 @AllArgsConstructor(staticName = "of")
 public class Result<T> {
     private final boolean successful;
+
     private final String message;
+
     private final T holder;
 
     public static <T> Result<T> fail(String message) {

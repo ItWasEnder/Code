@@ -109,7 +109,11 @@ public final class Delegates {
             } catch (RuntimeException | Error e) {
                 throw e;
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                final EscapedException escaped = new EscapedException(e);
+
+                Handle.sanitizeStackTrace(escaped, 2);
+
+                throw escaped;
             }
         }
     }

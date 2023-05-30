@@ -5,7 +5,7 @@ plugins {
 
 val group = "tv.ender"
 val artifactId = "Code"
-version = "1.0.1"
+version = "1.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -28,13 +28,15 @@ tasks {
 
     val publishSnapshot by registering {
         dependsOn(stage, "publishAllPublicationsToSnapshotsDragonRepository")
+
         doLast {
-            println("Published $artifactId-$version-SNAPSHOT to snapshots")
+            println("Published $artifactId-$version to snapshots")
         }
     }
 
     val publishRelease by registering {
         dependsOn(stage, "publishAllPublicationsToReleasesDragonRepository")
+
         doLast {
             println("Published $artifactId-$version to releases")
         }
@@ -73,12 +75,24 @@ publishing {
         create<MavenPublication>("maven") {
             this.groupId = group
             this.artifactId = artifactId
-            this.version = if (project.tasks["publishSnapshot"].enabled) {
-                "$version-SNAPSHOT"
-            } else {
-                version
-            }
+            this.version = version
             from(components["java"])
+        }
+    }
+}
+
+tasks.getByName("publishMavenPublicationToSnapshotsDragonRepository") {
+    doFirst {
+        if (!project.version.toString().endsWith("-SNAPSHOT")) {
+            throw GradleException("Cannot publish non-snapshot version to snapshots repository")
+        }
+    }
+}
+
+tasks.getByName("publishMavenPublicationToReleasesDragonRepository") {
+    doFirst {
+        if (project.version.toString().endsWith("-SNAPSHOT")) {
+            throw GradleException("Cannot publish snapshot version to releases repository")
         }
     }
 }

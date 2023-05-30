@@ -1,5 +1,6 @@
 <div align=center>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7ca4e196b35c44c4afc460dc6ec36742)](https://app.codacy.com/gh/EnderGamingFilms/Code?utm_source=github.com&utm_medium=referral&utm_content=EnderGamingFilms/Code&utm_campaign=Badge_Grade)
 [![Maven Repo](https://img.shields.io/badge/dynamic/xml?color=blue&label=🚀%20Maven%20Repo&query=//latest&url=https://repo.ender.tv/releases/tv/ender/Code/maven-metadata.xml)](https://repo.ender.tv/#/releases/tv/ender/Code)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3572326ca1c64f059be4847b81b2227a)](https://app.codacy.com/gh/EnderGamingFilms/Code/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Discord](https://img.shields.io/discord/867365182249762816?label=Discord&logo=discord&logoColor=ffffff&color=7289DA)](https://discord.gg/DMFdqzRwvu)

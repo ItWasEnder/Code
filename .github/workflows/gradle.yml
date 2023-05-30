@@ -30,7 +30,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        run: ./gradlew wrapper
+        run: gradle wrapper
 
       - name: Stage with Gradle
         run: ./gradlew stage

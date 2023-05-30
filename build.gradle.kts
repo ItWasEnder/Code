@@ -19,6 +19,20 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.26")
 }
 
+tasks {
+    val stage by registering {
+        dependsOn(test, build, clean)
+    }
+
+    build {
+        mustRunAfter(test, clean)
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }

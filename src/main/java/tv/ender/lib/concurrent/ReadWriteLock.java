@@ -1,4 +1,4 @@
-package tv.ender.concurrent;
+package tv.ender.lib.concurrent;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

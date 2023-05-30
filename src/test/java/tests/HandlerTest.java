@@ -1,8 +1,8 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import tv.ender.exceptions.EscapedException;
-import tv.ender.exceptions.Handle;
+import tv.ender.lib.exceptions.EscapedException;
+import tv.ender.lib.exceptions.Handle;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

@@ -1,9 +1,9 @@
-package tv.ender.exceptions;
+package tv.ender.lib.exceptions;
 
-import tv.ender.common.Delegates;
-import tv.ender.interfaces.ThrowableConsumer;
-import tv.ender.interfaces.ThrowableRunnable;
-import tv.ender.interfaces.ThrowableSupplier;
+import tv.ender.lib.common.Delegates;
+import tv.ender.lib.interfaces.ThrowableConsumer;
+import tv.ender.lib.interfaces.ThrowableRunnable;
+import tv.ender.lib.interfaces.ThrowableSupplier;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -62,7 +62,7 @@ public class Handle {
         Handle.throwable(Delegates.runnableToThrowableSupplier(handler));
     }
 
-    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<EscapedException> error) {
+    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<tv.ender.lib.exceptions.EscapedException> error) {
         Objects.requireNonNull(handler, "supplier");
         Objects.requireNonNull(error, "error");
 
@@ -71,15 +71,15 @@ public class Handle {
 
             supplier.get();
         } catch (Exception t) {
-            if (t instanceof EscapedException) {
-                error.accept((EscapedException) t);
+            if (t instanceof tv.ender.lib.exceptions.EscapedException) {
+                error.accept((tv.ender.lib.exceptions.EscapedException) t);
             } else {
-                error.accept(new EscapedException(t));
+                error.accept(new tv.ender.lib.exceptions.EscapedException(t));
             }
         }
     }
 
-    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<EscapedException> error, ThrowableRunnable<T> finallyHandler) {
+    public static <T extends Exception> void throwable(ThrowableRunnable<T> handler, Consumer<tv.ender.lib.exceptions.EscapedException> error, ThrowableRunnable<T> finallyHandler) {
         Objects.requireNonNull(handler, "supplier");
         Objects.requireNonNull(error, "error");
         Objects.requireNonNull(finallyHandler, "finally-handler");
@@ -89,10 +89,10 @@ public class Handle {
 
             supplier.get();
         } catch (Exception t) {
-            if (t instanceof EscapedException) {
-                error.accept((EscapedException) t);
+            if (t instanceof tv.ender.lib.exceptions.EscapedException) {
+                error.accept((tv.ender.lib.exceptions.EscapedException) t);
             } else {
-                error.accept(new EscapedException(t));
+                error.accept(new tv.ender.lib.exceptions.EscapedException(t));
             }
         } finally {
             Handle.throwable(finallyHandler);

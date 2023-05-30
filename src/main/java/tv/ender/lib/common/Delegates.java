@@ -1,10 +1,10 @@
-package tv.ender.common;
+package tv.ender.lib.common;
 
-import tv.ender.exceptions.EscapedException;
-import tv.ender.exceptions.Handle;
-import tv.ender.interfaces.Delegate;
-import tv.ender.interfaces.ThrowableRunnable;
-import tv.ender.interfaces.ThrowableSupplier;
+import tv.ender.lib.exceptions.EscapedException;
+import tv.ender.lib.exceptions.Handle;
+import tv.ender.lib.interfaces.Delegate;
+import tv.ender.lib.interfaces.ThrowableRunnable;
+import tv.ender.lib.interfaces.ThrowableSupplier;
 
 import java.util.concurrent.Callable;
 import java.util.function.BiConsumer;
@@ -45,7 +45,7 @@ public final class Delegates {
     }
 
     public static <T> Supplier<T> callableToSupplier(Callable<T> callable) {
-        var c = new CallableToSupplier<>(callable);
+        CallableToSupplier<T> c = new CallableToSupplier<>(callable);
         return () -> (T) c.get();
     }
 

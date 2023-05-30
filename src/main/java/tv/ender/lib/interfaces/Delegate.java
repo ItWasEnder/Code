@@ -1,4 +1,4 @@
-package tv.ender.interfaces;
+package tv.ender.lib.interfaces;
 
 /**
  * Represents a class which delegates calls to a different object.

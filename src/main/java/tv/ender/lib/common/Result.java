@@ -1,4 +1,4 @@
-package tv.ender.common;
+package tv.ender.lib.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

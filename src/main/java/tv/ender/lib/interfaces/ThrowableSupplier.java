@@ -1,4 +1,4 @@
-package tv.ender.interfaces;
+package tv.ender.lib.interfaces;
 
 @FunctionalInterface
 public interface ThrowableSupplier<T extends Throwable, V> {

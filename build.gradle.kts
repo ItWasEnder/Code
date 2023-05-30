@@ -1,9 +1,11 @@
 plugins {
     id("java")
+    `maven-publish`
 }
 
-group = "tv.ender"
-version = "1.0-SNAPSHOT"
+val group = "tv.ender"
+val artifactId = "Code"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -19,4 +21,33 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "ReleasesDragon"
+            url = uri("https://repo.ender.tv/releases")
+            credentials(PasswordCredentials::class)
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+        maven {
+            name = "SnapshotsDragon"
+            url = uri("https://repo.ender.tv/snapshots")
+            credentials(PasswordCredentials::class)
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            this.groupId = group
+            this.artifactId = artifactId
+            this.version = version
+            from(components["java"])
+        }
+    }
 }

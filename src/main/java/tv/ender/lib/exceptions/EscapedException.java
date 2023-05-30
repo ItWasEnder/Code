@@ -1,4 +1,4 @@
-package tv.ender.exceptions;
+package tv.ender.lib.exceptions;
 
 public class EscapedException extends RuntimeException {
     public EscapedException(Throwable t) {

@@ -1,4 +1,4 @@
-package tv.ender.common;
+package tv.ender.lib.common;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -10,6 +10,7 @@ public class Promise<T> extends AtomicReference<T> {
     public Promise() {
         super();
     }
+
     public static <T> Promise<T> of(T initialValue) {
         return new Promise<>(initialValue);
     }

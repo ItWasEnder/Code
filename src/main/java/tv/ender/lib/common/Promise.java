@@ -2,6 +2,11 @@ package tv.ender.lib.common;
 
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Represents a CompletableFuture that can be completed except it's easier to type.
+ *
+ * @param <T> the type of the promise
+ */
 public class Promise<T> extends AtomicReference<T> {
     public Promise(T initialValue) {
         super(initialValue);

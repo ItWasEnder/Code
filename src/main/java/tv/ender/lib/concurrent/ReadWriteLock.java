@@ -4,6 +4,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Supplier;
 
+/**
+ * A read-write lock which allows for a supplier to be used to generate return values.
+ * As well as runnable that will release the lock after the code is executed.
+ */
 public class ReadWriteLock {
     private final java.util.concurrent.locks.ReadWriteLock lock = new ReentrantReadWriteLock();
 

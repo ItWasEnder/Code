@@ -8,7 +8,8 @@ import java.util.Random;
 public class RandomStringUtils {
     private static final Random RANDOM = new Random();
 
-    public RandomStringUtils() {
+    private RandomStringUtils() {
+        throw new IllegalStateException("Utility class");
     }
 
     public static String random(int count) {

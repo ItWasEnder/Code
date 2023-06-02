@@ -1,6 +1,6 @@
 <div align=center>
 
-[![Maven Repo](https://img.shields.io/badge/dynamic/xml?color=blue&label=🚀%20Maven%20Repo&query=//latest&url=https://repo.ender.tv/releases/tv/ender/Code/maven-metadata.xml)](https://repo.ender.tv/#/releases/tv/ender/Code)
+[![Maven Repo](https://img.shields.io/badge/dynamic/xml?color=blue&label=🚀%20Maven%20Repo&query=//release&url=https://repo.ender.tv/public/tv/ender/Code/maven-metadata.xml)](https://repo.ender.tv/#/releases/tv/ender/Code)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/84bf13972daa4f09b0d8a1b1149f11a2)](https://app.codacy.com/gh/EnderGamingFilms/Code/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Discord](https://img.shields.io/discord/867365182249762816?label=Discord&logo=discord&logoColor=ffffff&color=7289DA)](https://discord.gg/DMFdqzRwvu)
 [![Solo.to](https://img.shields.io/badge/✨%20Other%20Socials-Click%20Here-orange.svg)](http://ender.tv)
@@ -14,7 +14,7 @@ This library contains general utilities for java to make my life a little easier
 ## 🐘 Gradle
 ```gradle
 repositories {
-    maven { url = uri("https://repo.ender.tv/releases") }
+    maven { url = uri("https://repo.ender.tv/public") }
 }
 
 dependencies {
@@ -42,9 +42,9 @@ build {
 ## 🦢 Maven
 ```xml
 <repository>
-  <id>ender-releases</id>
+  <id>ender-public</id>
   <name>Ender's Repo</name>
-  <url>https://repo.ender.tv/<repository></url>
+  <url>https://repo.ender.tv/public</url>
 </repository>
 
 <dependency>

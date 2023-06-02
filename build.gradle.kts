@@ -5,7 +5,7 @@ plugins {
 
 val group = "tv.ender"
 val artifactId = "Code"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -26,19 +26,10 @@ tasks {
         dependsOn(test, build, clean)
     }
 
-    val publishSnapshot by registering {
-        dependsOn(stage, "publishAllPublicationsToSnapshotsDragonRepository")
-
+    publish {
+        dependsOn(stage)
         doLast {
-            println("Published $artifactId-$version to snapshots")
-        }
-    }
-
-    val publishRelease by registering {
-        dependsOn(stage, "publishAllPublicationsToReleasesDragonRepository")
-
-        doLast {
-            println("Published $artifactId-$version to releases")
+            println("Published $artifactId-$version to host")
         }
     }
 
@@ -54,16 +45,8 @@ tasks {
 publishing {
     repositories {
         maven {
-            name = "ReleasesDragon"
-            url = uri("https://repo.ender.tv/releases")
-            credentials(PasswordCredentials::class)
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-        maven {
-            name = "SnapshotsDragon"
-            url = uri("https://repo.ender.tv/snapshots")
+            name = "publicEnder"
+            url = uri("https://repo.ender.tv/public")
             credentials(PasswordCredentials::class)
             authentication {
                 create<BasicAuthentication>("basic")
@@ -77,22 +60,6 @@ publishing {
             this.artifactId = artifactId
             this.version = version
             from(components["java"])
-        }
-    }
-}
-
-tasks.getByName("publishMavenPublicationToSnapshotsDragonRepository") {
-    doFirst {
-        if (!project.version.toString().endsWith("-SNAPSHOT")) {
-            throw GradleException("Cannot publish non-snapshot version to snapshots repository")
-        }
-    }
-}
-
-tasks.getByName("publishMavenPublicationToReleasesDragonRepository") {
-    doFirst {
-        if (project.version.toString().endsWith("-SNAPSHOT")) {
-            throw GradleException("Cannot publish snapshot version to releases repository")
         }
     }
 }
